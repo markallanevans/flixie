@@ -83,6 +83,7 @@ class App extends Component {
 
   refreshFilter() {
     const allMovies = this.state.fullMovieList;
+    this.refs.searchBox.value = '';
     this.setState({ 
       movies: allMovies,
       searchText: '',
@@ -164,7 +165,7 @@ class App extends Component {
           <img style={fliXieStyle} src={flixieTitle} alt='title'></img>
         </header>
         <section id="searchandsort">
-          <input style={inputStyle} className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
+          <input style={inputStyle} ref="searchBox" className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
           <button style={buttonStyle} className="button w-10" onClick={this.refreshFilter.bind(this)}>Refresh</button>
           <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
           <GenreList setGenre={this.setGenre} genres={this.state.genres} />
