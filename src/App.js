@@ -5,64 +5,70 @@ import GenreList from './Components/GenreList';
 const movie_API_KEY = '?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed';
 const genreListUrl = 'https://api.themoviedb.org/3/genre/movie/list';
 const movie_API_URL = 'https://api.themoviedb.org/3/movie/';
+const BASE_URL = 'https://api.themoviedb.org/3/genre/';
 
 class App extends Component {
   
   constructor() {
-      super();
-      this.state = {
-          movies: [],
-          genres: []
-      };
-      this.collectionQuery = this.collectionQuery.bind(this);
-      this.displayNowPlaying = this.displayNowPlaying.bind(this);
-      this.genreQuery = this.genreQuery.bind(this);
+    super();
+    this.state = {
+      fullMovieList: [],
+      movies: [],
+      genres: [],
+      collection: 'popular',
+      searchText: 'Search...',
+    };
+    this.collectionQuery = this.collectionQuery.bind(this);
+    this.displayNowPlaying = this.displayNowPlaying.bind(this);
+    this.genreQuery = this.genreQuery.bind(this);
+    this.fetchGenres = this.fetchGenres.bind(this);
   }
-
+  
+  async fetchGenres() {
+    const query = genreListUrl + movie_API_KEY;
+    const data = await fetch(query);
+    const response = await data.json();
+    const genresResults = response.genres;
+    this.setState({ genres: genresResults });
+  }
+  
+  
   async collectionQuery (collection) {
+    const query = movie_API_URL + collection + movie_API_KEY;
+    const data = await fetch(query);
+    const response = await data.json();
+    const fullMovieList = response.results;
     let collectionCheck = collection;
     if(this.state.movies.length > 0 && collectionCheck !== 'now_playing') {
       return
     } else {
-      const query = movie_API_URL + collection + movie_API_KEY;
-      const data = await fetch(query);
-      const response = await data.json();
-      const fullMovieList = response.results;
-      console.log(query);
-      const query2 = genreListUrl + movie_API_KEY;
-      const data2 = await fetch(query2);
-      const response2 = await data2.json();
-      const genresResults = response2.genres;
       this.setState({
         fullMovieList: fullMovieList,
         movies: fullMovieList,
-        genres: genresResults,
         currentGenre: 'none'
       })
     }
   }
-
+  
+  
   async genreQuery (genreID) {
-    const BASE_URL = 'https://api.themoviedb.org/3/genre/';
     const genreApiCall = '/movies?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&include_adult=false&sort_by=created_at.asc'
-    const genreQuery = BASE_URL + genreID + genreApiCall;
-
-    const data = await fetch(genreQuery);
+    const genreQueryURI = BASE_URL + genreID + genreApiCall;
+    
+    const data = await fetch(genreQueryURI);
     const response = await data.json();
-    const genreList = response.results;
+    const moviesOfGenre = response.results;
   
     this.setState({
-      fullMovieList: genreList,
-      movies: genreList,
+      fullMovieList: moviesOfGenre,
+      movies: moviesOfGenre,
       currentGenre: genreID
     })
   }
-
-
   
   componentDidMount() {
-    const initialCollection = 'popular'
-    this.collectionQuery(initialCollection);
+    this.collectionQuery(this.state.collection);
+    this.fetchGenres();
   }
 
   filterMovies(filterText) {
@@ -75,6 +81,14 @@ class App extends Component {
       })
   }
 
+  refreshFilter() {
+    const allMovies = this.state.fullMovieList;
+    this.setState({ 
+      movies: allMovies,
+      searchText: '',
+    });
+  }
+
   displayNowPlaying() {
     const nowPlaying = 'now_playing';
     this.collectionQuery(nowPlaying);
@@ -82,10 +96,9 @@ class App extends Component {
 
 
   setGenre = (event) => {
-    const val = event.target.value;
-    console.log(val)
-    this.collectionQuery(val);
-    this.genreQuery(val);
+    const genreID = event.target.value;
+    this.collectionQuery(genreID);
+    this.genreQuery(genreID);
   }
 
   render() {
@@ -124,7 +137,6 @@ class App extends Component {
     }
 
     const inputStyle = {
-      width: '40%',
       height: '50px',
       background: '#111133',
       color: 'White',
@@ -136,7 +148,6 @@ class App extends Component {
 
     const buttonStyle = {
       textTransform: 'capitalize',
-      width: '40%',
       height: '50px',
       background: '#222244',
       color: 'White',
@@ -153,8 +164,9 @@ class App extends Component {
           <img style={fliXieStyle} src={flixieTitle} alt='title'></img>
         </header>
         <section id="searchandsort">
-          <input style={inputStyle} placeholder='Search...' onChange={(userText) => this.filterMovies(userText.target.value)} />
-          <button style={buttonStyle} onClick={this.displayNowPlaying} className='button' >Now Playing</button>
+          <input style={inputStyle} className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
+          <button style={buttonStyle} className="button w-10" onClick={this.refreshFilter.bind(this)}>Refresh</button>
+          <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
           <GenreList setGenre={this.setGenre} genres={this.state.genres} />
         </section>
         <div style={listStyle}>
