@@ -1,0 +1,36 @@
+body {
+  background-color: #deddf0;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  width: 100%
+}
+
+.border-rounded {
+  border-radius: 5px
+}
+
+.button:hover {
+  background: black;
+  transform: scale(1.05);
+}
+
+.loader {
+  position: relative;
+  width: 4em;
+  height: 4em;
+  margin: 5%;
+  border: 2em double rgba(126, 131, 140, 0.8);
+  border-top: 2em double rgba(178, 186, 205, 0.9);
+  border-radius: 50%;
+  animation: load8 2s infinite linear;
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

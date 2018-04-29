@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="606px" height="297px" viewBox="0 0 606 297" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>flXieTitle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="3.061617e-15%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#111133" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#111133" offset="100%"></stop>
+        </linearGradient>
+        <path d="M123.76,331.224 C114.543954,327.383981 107.344026,325.464 102.16,325.464 C96.9759741,325.464 93.6160077,327.143983 92.08,330.504 C90.5439923,333.864017 89.776,339.479961 89.776,347.352 L89.776,362.04 L121.744,362.04 L121.744,382.776 L89.776,382.776 L89.776,519 L65.872,519 L65.872,382.776 L46,382.776 L46,362.04 L65.872,362.04 L65.872,344.184 C65.872,329.975929 68.5119736,319.560033 73.792,312.936 C79.0720264,306.311967 87.3759434,303 98.704,303 C104.848031,303 113.199947,304.439986 123.76,307.32 L123.76,331.224 Z M167.824,519 L144.208,519 L144.208,303 L167.824,303 L167.824,519 Z M213.616,303 C218.800026,303 223.167982,304.775982 226.72,308.328 C230.272018,311.880018 232.048,316.199975 232.048,321.288 C232.048,326.376025 230.272018,330.695982 226.72,334.248 C223.167982,337.800018 218.848025,339.576 213.76,339.576 C208.671975,339.576 204.352018,337.752018 200.8,334.104 C197.247982,330.455982 195.472,326.184024 195.472,321.288 C195.472,316.391976 197.247982,312.120018 200.8,308.472 C204.352018,304.823982 208.623975,303 213.616,303 Z M225.712,519 L201.808,519 L201.808,362.04 L225.712,362.04 L225.712,519 Z M428.464,566 L393.664521,566 L330.612,447.516393 L267.559479,566 L232.76,566 L313.384535,414.06694 L237.928239,271 L272.727718,271 L330.612,381.020492 L389.18538,271 L423.64031,271 L348.184014,414.06694 L428.464,566 Z M446.608,303 C451.792026,303 456.159982,304.775982 459.712,308.328 C463.264018,311.880018 465.04,316.199975 465.04,321.288 C465.04,326.376025 463.264018,330.695982 459.712,334.248 C456.159982,337.800018 451.840025,339.576 446.752,339.576 C441.663975,339.576 437.344018,337.752018 433.792,334.104 C430.239982,330.455982 428.464,326.184024 428.464,321.288 C428.464,316.391976 430.239982,312.120018 433.792,308.472 C437.344018,304.823982 441.615975,303 446.608,303 Z M458.704,519 L434.8,519 L434.8,362.04 L458.704,362.04 L458.704,519 Z M649.936,444.696 L512.272,444.696 C513.232005,461.976086 519.039947,475.847948 529.696,486.312 C540.352053,496.776052 553.071926,502.008 567.856,502.008 C593.008126,502.008 612.207934,489.624124 625.456,464.856 L645.616,475.224 C636.591955,491.928084 625.936061,504.26396 613.648,512.232 C601.359939,520.20004 586.672085,524.184 569.584,524.184 C545.967882,524.184 526.480077,516.072081 511.12,499.848 C495.759923,483.623919 488.08,464.088114 488.08,441.24 C488.08,418.391886 495.807923,398.808082 511.264,382.488 C526.720077,366.167918 545.871886,358.008 568.72,358.008 C591.568114,358.008 610.671923,365.735923 626.032,381.192 C641.392077,396.648077 649.359997,417.815866 649.936,444.696 Z M623.44,423.672 C620.559986,410.231933 614.032051,399.768037 603.856,392.28 C593.679949,384.791963 581.968066,381.048 568.72,381.048 C541.839866,381.048 523.984044,395.255858 515.152,423.672 L623.44,423.672 Z" id="path-3"></path>
+        <filter x="-0.5%" y="-1.0%" width="101.0%" height="102.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
+            <feGaussianBlur stdDeviation="1.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <filter x="-0.5%" y="-1.0%" width="101.0%" height="102.0%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
+            <feGaussianBlur stdDeviation="1.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8-Plus-Copy" transform="translate(-45.000000, -270.000000)">
+            <g id="flXieTitle">
+                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
+            </g>
+        </g>
+    </g>
+</svg>
