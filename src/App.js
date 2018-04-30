@@ -112,9 +112,9 @@ class App extends Component {
   
   render() {
     
-    const headerBackground = require("./images/headerbackground.png")
+    //const headerBackground = require("./images/headerbackground.png")
     const backGroundUrl = require("./images/fancy-pants.jpg")
-    const flixieTitle = require('./images/fliXie-smile-white.png')
+    const flixieTitle = require('./images/fliXie_dark.png')
     const upArrow = require('./images/upArrow.png');
     const downArrow = require('./images/downArrow.png');
     const arrowImageStyle = {
@@ -130,7 +130,9 @@ class App extends Component {
     const headerStyle = {
       width: '100%',
       height: '400px',
-      backgroundImage: `url(${headerBackground}`,
+      //backgroundImage: `url(${headerBackground}`,
+      backgroundImage: 'linear-gradient(#000022, #eeeeff)',
+      backgroundColor: '#9999aa',
       backgroundPosition: 'center 95%',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',

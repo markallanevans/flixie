@@ -53,7 +53,6 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
     //     backgroundColor: 'red',
     //     borderRadius: '50%'
     // }
-    console.log(releaseDate);
 
     return(
         <div style={cardStyle} className='border-rounded'>

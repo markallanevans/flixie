@@ -36,7 +36,6 @@ class MovieList extends Component {
 
     render() {
         const loaded = this.props.loaded;
-        console.log(loaded);
         if(!loaded) {
             return(
                 <div className="loader">

@@ -15,7 +15,6 @@ class GenreList extends React.Component {
         this.setState({
             currentGenre: genreName,
         })
-        console.log(this.state.currentGenre);
     }
 
     render() {
