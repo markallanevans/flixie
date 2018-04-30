@@ -12,7 +12,7 @@ const GenreList = ( { setGenre, genres } ) => {
 
     return(
             <form>
-                <select name={genres.id} id={genres.id} onChange={setGenre}>
+                <select style={{backgroundColor: 'rgba(255,255,255,0.7)', border: '10px solid rgba(255,255,255,0.5)'}} name={genres.id} id={genres.id} onChange={setGenre}>
                 {
                     genres.map((genres, i) => {
                         const genreName = genres.name;

@@ -6,22 +6,37 @@ const posterBaseUrl = 'https://image.tmdb.org/t/p/';
 const posterSize= 'w300/'
 
 class MovieList extends Component {
-    state = {
-        loading: true
-    };
+    constructor(props){
+        super(props);
 
-    componentDidMount() {
-        setTimeout(() => this.setState({ loading: false}), 1500);
+        this.sortBy = this.sortBy.bind(this);
     }
 
+    sortBy = (b, a) => {
+
+        const genreA = a.vote_average;
+        const genreB = b.vote_average;
+    
+        let comparison = 0;
+        if (genreA > genreB) {
+          comparison = 1;
+        } else if (genreA < genreB) {
+          comparison = -1;
+        }
+        return comparison;
+      }
+
     render() {
-        const { loading } = this.state;
-        if(loading) {
+        const loaded = this.props.loaded;
+        console.log(loaded);
+        if(!loaded) {
             return(
                 <div className="loader">
                 </div>
             )
         } else if (this.props.movies.length > 0) {
+        const sortedMovies = this.props.movies.sort(this.sortBy);
+        console.log(sortedMovies);
         const elements = this.props.movies.map(movies => {
 
             return (
@@ -30,7 +45,7 @@ class MovieList extends Component {
                         id={movies.id}
                         title={movies.title}
                         score={movies.vote_average}
-                        posterPath={posterBaseUrl + posterSize + movies.poster_path}
+                        posterPath={posterBaseUrl + posterSize + movies.poster_path }
                         releaseDate={movies.release_date}
                         overview={movies.overview}
                     />

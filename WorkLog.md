@@ -1,15 +1,11 @@
 # Friday April 27th
 
 __**Overall to do List**__
--> make a change to the genre refresh the api call
 -> research and better understand possible API searches
 -> add better header background
 -> fix Flixie Header Logo
 -> get all movies in the API (or at least get more than 10)
 -> display date in better format
--> user can click button to refresh search
--> fix the "loading" button so it actually functions based on whether a fetch request returns data
--> add favicon to site
 
 __Optional:__
 -> sort movies by rating, popularity, release date (this should be easy and doesn't need a new API call)
@@ -19,6 +15,10 @@ __Optional:__
 -> change layouts on the fly (maybe a theme changer?)
 
 __*Done*__
+-> add favicon to site
+-> fix the "loading" button so it actually functions based on whether a fetch request returns data
+-> make a change to the genre refresh the api call
+-> user can click button to refresh search
 -> create dropDown from genre list that can be clicked
 -> display "No movie found" if search returns no results
 -> fix "Now Playing" function
@@ -31,6 +31,10 @@ __*Done*__
     + on the buttons in <ListItem /> had to use onClick={() => console.log('me!')} and not just plain {console.log('me!')} to avoid having the logs happen automatically.
     + in the select and option set, had to put onChange in the select tag, why? Didn't work in the option tag.
     + learnings: to continue research, previously the genrelist toggle was failing due to the fact that the movies list was being screwed up in the second api call... fixed it by plugging in an if statement to check if movies was already full. in case it was, it returns out of the function... but... need to go deeper and make sure the collection query is not called on componentDidMount in the first place.
+    + was able to make the SearchBox clear itself by adding "ref" to the Searchbox and using     
+        this.refs.searchBox.value = '';
+    to make it work. Is there a better way?
+
 
 
 

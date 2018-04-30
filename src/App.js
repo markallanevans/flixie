@@ -17,11 +17,13 @@ class App extends Component {
       genres: [],
       collection: 'popular',
       searchText: 'Search...',
+      loaded: false,
     };
     this.collectionQuery = this.collectionQuery.bind(this);
     this.displayNowPlaying = this.displayNowPlaying.bind(this);
     this.genreQuery = this.genreQuery.bind(this);
     this.fetchGenres = this.fetchGenres.bind(this);
+    this.sortByGenre = this.sortByGenre.bind(this);
   }
   
   async fetchGenres() {
@@ -45,7 +47,7 @@ class App extends Component {
       this.setState({
         fullMovieList: fullMovieList,
         movies: fullMovieList,
-        currentGenre: 'none'
+        loaded: true,
       })
     }
   }
@@ -62,7 +64,6 @@ class App extends Component {
     this.setState({
       fullMovieList: moviesOfGenre,
       movies: moviesOfGenre,
-      currentGenre: genreID
     })
   }
   
@@ -100,6 +101,19 @@ class App extends Component {
     const genreID = event.target.value;
     this.collectionQuery(genreID);
     this.genreQuery(genreID);
+  }
+
+  sortByGenre = (a, b) => {
+    const genreA = a.genre.toUpperCase();
+    const genreB = b.genre.toUpperCase();
+
+    let comparison = 0;
+    if (genreA > genreB) {
+      comparison = 1;
+    } else if (genreA < genreB) {
+      comparison = -1;
+    }
+    return comparison;
   }
 
   render() {
@@ -166,12 +180,12 @@ class App extends Component {
         </header>
         <section id="searchandsort">
           <input style={inputStyle} ref="searchBox" className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
-          <button style={buttonStyle} className="button w-10" onClick={this.refreshFilter.bind(this)}>Refresh</button>
+          <img src={require('./images/refresh_icon.png')} style={{maxWidth: '40px', verticalAlign: 'middle', cursor: 'pointer'}} onClick={this.refreshFilter.bind(this)}></img>
           <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
           <GenreList setGenre={this.setGenre} genres={this.state.genres} />
         </section>
         <div style={listStyle}>
-        <MovieList movies={this.state.movies} />
+        <MovieList movies={this.state.movies} loaded={this.state.loaded} />
         </div>
       </div>
     );
