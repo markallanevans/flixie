@@ -2,6 +2,7 @@ import React from 'react';
 
 const GenreList = ( { setGenre, genres } ) => {
     const listItemStyle = {
+        float: 'left',
         maxWidth: '150px',
         border: '1px solid white',
         margin: '2px auto 2px auto',

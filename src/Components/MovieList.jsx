@@ -9,22 +9,30 @@ class MovieList extends Component {
     constructor(props){
         super(props);
 
-        this.sortBy = this.sortBy.bind(this);
+        this.sortList = this.sortList.bind(this);
     }
 
-    sortBy = (b, a) => {
+    sortList = (key, order = this.props.sortOrder) => {
 
-        const genreA = a.vote_average;
-        const genreB = b.vote_average;
+        return function (a, b) {
+            if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                return 0;
+            }
+            
+        const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
+        const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
     
         let comparison = 0;
-        if (genreA > genreB) {
+        if (varA > varB) {
           comparison = 1;
-        } else if (genreA < genreB) {
+        } else if (varA < varB) {
           comparison = -1;
         }
-        return comparison;
-      }
+        return (
+            (order == 'desc') ? (comparison * -1) : comparison
+        );
+      };
+    }
 
     render() {
         const loaded = this.props.loaded;
@@ -35,8 +43,7 @@ class MovieList extends Component {
                 </div>
             )
         } else if (this.props.movies.length > 0) {
-        const sortedMovies = this.props.movies.sort(this.sortBy);
-        console.log(sortedMovies);
+        this.props.movies.sort(this.sortList(this.props.sortCriteria, this.props.sortOrder));
         const elements = this.props.movies.map(movies => {
 
             return (
@@ -48,6 +55,8 @@ class MovieList extends Component {
                         posterPath={posterBaseUrl + posterSize + movies.poster_path }
                         releaseDate={movies.release_date}
                         overview={movies.overview}
+                        voteCount={movies.vote_count}
+                        popularity={Math.floor(movies.popularity)}
                     />
                 );
             })
@@ -55,7 +64,7 @@ class MovieList extends Component {
 
         } else {
             return (
-                <div>
+                <div style={{minHeight: '300px', maxWidth: '300px', marginTop: '50px'}}>
                     <h1 style={{color: 'white'}}>There are no movies matching your search! Run away!</h1>
                 </div>
             )

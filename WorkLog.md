@@ -6,6 +6,10 @@ __**Overall to do List**__
 -> fix Flixie Header Logo
 -> get all movies in the API (or at least get more than 10)
 -> display date in better format
+-> fix issue whereby the GENRES sorting is screwed up (maybe select sort by the first index only?)
+    **could fix this by preventing GENRES button to work if GENRES is already selected**
+    **that could be done by either using a clickcounter, or by identifying the currently selected GENRE**
+-> now need to identify ACTIVE button (genre, nowPlaying, regular, etc)
 
 __Optional:__
 -> sort movies by rating, popularity, release date (this should be easy and doesn't need a new API call)
@@ -15,6 +19,8 @@ __Optional:__
 -> change layouts on the fly (maybe a theme changer?)
 
 __*Done*__
+-> fixed sorting so ascending and descending works
+-> fixed ability to switch between lists
 -> add favicon to site
 -> fix the "loading" button so it actually functions based on whether a fetch request returns data
 -> make a change to the genre refresh the api call
@@ -34,7 +40,7 @@ __*Done*__
     + was able to make the SearchBox clear itself by adding "ref" to the Searchbox and using     
         this.refs.searchBox.value = '';
     to make it work. Is there a better way?
-
+    + learnings, with the TOGGLESORT button I don't need to have a function call to prevent it from repeatedly calling, but with the setState I do need this... why?
 
 
 

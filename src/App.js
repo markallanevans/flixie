@@ -18,12 +18,14 @@ class App extends Component {
       collection: 'popular',
       searchText: 'Search...',
       loaded: false,
+      sortCriteria: 'title',
+      sortOrder: 'asc'
     };
     this.collectionQuery = this.collectionQuery.bind(this);
     this.displayNowPlaying = this.displayNowPlaying.bind(this);
     this.genreQuery = this.genreQuery.bind(this);
     this.fetchGenres = this.fetchGenres.bind(this);
-    this.sortByGenre = this.sortByGenre.bind(this);
+    this.toggleSortOrder = this.toggleSortOrder.bind(this);
   }
   
   async fetchGenres() {
@@ -103,24 +105,16 @@ class App extends Component {
     this.genreQuery(genreID);
   }
 
-  sortByGenre = (a, b) => {
-    const genreA = a.genre.toUpperCase();
-    const genreB = b.genre.toUpperCase();
-
-    let comparison = 0;
-    if (genreA > genreB) {
-      comparison = 1;
-    } else if (genreA < genreB) {
-      comparison = -1;
-    }
-    return comparison;
+  toggleSortOrder() {
+    let newOrder = this.state.sortOrder == 'asc' ? 'desc' : 'asc';
+    this.setState( { sortOrder: newOrder} );
   }
 
   render() {
 
     const headerBackground = require("./images/headerbackground.png")
     const backGroundUrl = require("./images/fancy-pants.jpg")
-    const flixieTitle = require('./images/fliXie-smile-2.png')
+    const flixieTitle = require('./images/fliXie-smile-white.png')
 
     const headerStyle = {
       width: '100%',
@@ -145,6 +139,8 @@ class App extends Component {
     const listStyle = {
       backgroundImage: `url(${backGroundUrl})`,
       backgroundAttachment: 'fixed',
+      position: 'relative',
+      paddingTop: '40px',
       display: 'flex',
       width: '100%',
       flexFlow: 'row wrap',
@@ -172,20 +168,39 @@ class App extends Component {
       margin: '10px 10px',
       cursor: 'pointer'
     }
+
+    const searchRow = {
+      width: '100%',
+      float: 'left'
+    }
     
+    const sortRow = {
+      width: '100%',
+      float: 'left'
+    }
+
     return (
       <div style={{textAlign: 'center', backgroundColor: 'rgb(49, 49, 66)'}}>
         <header style={headerStyle}>
           <img style={fliXieStyle} src={flixieTitle} alt='title'></img>
         </header>
         <section id="searchandsort">
-          <input style={inputStyle} ref="searchBox" className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
-          <img src={require('./images/refresh_icon.png')} style={{maxWidth: '40px', verticalAlign: 'middle', cursor: 'pointer'}} onClick={this.refreshFilter.bind(this)}></img>
-          <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
-          <GenreList setGenre={this.setGenre} genres={this.state.genres} />
+          <div style={searchRow}>
+            <input style={inputStyle} ref="searchBox" className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
+            <img src={require('./images/refresh_icon.png')} style={{maxWidth: '40px', verticalAlign: 'middle', cursor: 'pointer'}} onClick={this.refreshFilter.bind(this)}></img>
+            <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
+          </div>
+          <div style={sortRow}>  
+            <GenreList setGenre={this.setGenre} genres={this.state.genres} sortOrder={this.state.sortOrder} />
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'title'})}>Title</button>
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'popularity'})}>Popularity</button>
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'genres_id[0]'})}>Genre</button>
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'release_date'})}>Release Date</button>
+            <button style={buttonStyle} onClick={this.toggleSortOrder}>{this.state.sortOrder}</button>
+          </div>
         </section>
         <div style={listStyle}>
-        <MovieList movies={this.state.movies} loaded={this.state.loaded} />
+        <MovieList movies={this.state.movies} loaded={this.state.loaded} sortCriteria={this.state.sortCriteria} sortOrder={this.state.sortOrder} />
         </div>
       </div>
     );
