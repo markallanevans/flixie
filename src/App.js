@@ -159,24 +159,26 @@ class App extends Component {
     }
 
     const inputStyle = {
-      height: '50px',
+      height: '24px',
       background: '#111133',
       color: 'White',
       fontSize: '16px',
       textAlign: 'center',
-      border: '3px solid white',
+      border: 'none',
+      borderBottom: '2px solid #444455',
       margin: '10px 10px',
     }
 
     const buttonStyle = {
-      textTransform: 'capitalize',
-      height: '50px',
+      textTransform: 'uppercase',
+      height: '36px',
       background: '#222244',
-      color: 'White',
+      color: '#9999aa',
       fontSize: '16px',
       textAlign: 'center',
-      border: '1px #111133 white',
-      margin: '10px 10px',
+      border: '1px #444455',
+      boxShadow: '0 0 3px #9999aa',
+      margin: '16px 8px',
       cursor: 'pointer'
     }
 

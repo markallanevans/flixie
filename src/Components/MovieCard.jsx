@@ -13,6 +13,7 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
     }
 
     const captionStyle = {
+        color: '#888899',
         height: '150px',
         padding: '10px',
         overflowY: 'scroll',
@@ -22,18 +23,27 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
     const titleStyle = {
         display: 'flex',
         width: '108%',
-        minHeight: '56px',
-        lineHeight: '62px',
+        minHeight: '48px',
+        color: '#bbbbcc',
+        // lineHeight: '56px',
+        paddingTop: '8px',
+        paddingBottom: '8px',
         marginTop: '-16px',
+        marginBottom: '16px',
         marginLeft: '-16px',
-        selfAlign: 'center',
-        borderTop: '2x solid white',
-        borderBottom: '1px solid white',
+        display: 'block',
+        textAlign: 'center',
+        borderBottom: '1px solid #444455',
         backgroundColor: '#111133',
         opacity: '0.9',
         boxShadow: '0px 4px 16px 0px #111133'
     }
 
+    const posterStyle = {
+        border: '1px solid #444455',
+        boxShadow: '0 0 25px 0 #333355',
+
+    }
     // const scoreStyle = {
     //     position: 'relative',
     //     width: '100px',
@@ -47,9 +57,11 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
 
     return(
         <div style={cardStyle} className='border-rounded'>
-            <h1 style={titleStyle}> {title} </h1>
+            <div style={titleStyle}>
+                <h1 style={{paddingLeft: '16px'}}> {title} </h1>
+            </div>
             {/*<div style={scoreStyle}><p style={{}}> {score} </p></div>*/}
-            <img src={posterPath} className='border-rounded' style={{border: '1px solid #ddddff'}} alt=''></img>
+            <img src={posterPath} className='border-rounded' style={posterStyle} alt=''></img>
             
             <div style={captionStyle}>
                 <div style={{marginBottom: '8px', padding: '8px', float: 'left', backgroundColor: '#111133'}}> <strong>Release date:</strong> {releaseDate}</div>

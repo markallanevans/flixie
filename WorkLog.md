@@ -10,6 +10,8 @@ __**Overall to do List**__
     **could fix this by preventing GENRES button to work if GENRES is already selected**
     **that could be done by either using a clickcounter, or by identifying the currently selected GENRE**
 -> now need to identify ACTIVE button (genre, nowPlaying, regular, etc)
+-->Make the rating stuff fly in from the side.
+-->Make the buttons a fixed box that floats in the corner and then animates out if on mobile
 
 __Optional:__
 -> sort movies by rating, popularity, release date (this should be easy and doesn't need a new API call)
