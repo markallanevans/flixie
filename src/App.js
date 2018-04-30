@@ -62,7 +62,7 @@ class App extends Component {
     const data = await fetch(genreQueryURI);
     const response = await data.json();
     const moviesOfGenre = response.results;
-  
+    
     this.setState({
       fullMovieList: moviesOfGenre,
       movies: moviesOfGenre,
@@ -73,17 +73,17 @@ class App extends Component {
     this.collectionQuery(this.state.collection);
     this.fetchGenres();
   }
-
+  
   filterMovies(filterText) {
     const allMovies = this.state.fullMovieList;
     const filteredMovies = allMovies.filter(
       m => m.title.toLowerCase().indexOf(filterText.toLowerCase()) !== -1
     )
     this.setState({
-        movies: filteredMovies
-      })
+      movies: filteredMovies
+    })
   }
-
+  
   refreshFilter() {
     const allMovies = this.state.fullMovieList;
     this.refs.searchBox.value = '';
@@ -92,30 +92,41 @@ class App extends Component {
       searchText: '',
     });
   }
-
+  
   displayNowPlaying() {
     const nowPlaying = 'now_playing';
     this.collectionQuery(nowPlaying);
   }
-
-
+  
+  
   setGenre = (event) => {
     const genreID = event.target.value;
     this.collectionQuery(genreID);
     this.genreQuery(genreID);
   }
-
+  
   toggleSortOrder() {
     let newOrder = this.state.sortOrder == 'asc' ? 'desc' : 'asc';
     this.setState( { sortOrder: newOrder} );
   }
-
+  
   render() {
-
+    
     const headerBackground = require("./images/headerbackground.png")
     const backGroundUrl = require("./images/fancy-pants.jpg")
     const flixieTitle = require('./images/fliXie-smile-white.png')
+    const upArrow = require('./images/upArrow.png');
+    const downArrow = require('./images/downArrow.png');
+    const arrowImageStyle = {
+      padding: '0',
+      width: '36px',
+      width: '36px',
+      backgroundColor: 'transparent',
+      verticalAlign: 'middle',
+      border: 'none',
 
+    };
+    
     const headerStyle = {
       width: '100%',
       height: '400px',
@@ -164,7 +175,7 @@ class App extends Component {
       color: 'White',
       fontSize: '16px',
       textAlign: 'center',
-      border: '1px solid white',
+      border: '1px #111133 white',
       margin: '10px 10px',
       cursor: 'pointer'
     }
@@ -192,11 +203,11 @@ class App extends Component {
           </div>
           <div style={sortRow}>  
             <GenreList setGenre={this.setGenre} genres={this.state.genres} sortOrder={this.state.sortOrder} />
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'title'})}>Title</button>
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'title'})} selected="selected">Title</button>
             <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'popularity'})}>Popularity</button>
             <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'genres_id[0]'})}>Genre</button>
             <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'release_date'})}>Release Date</button>
-            <button style={buttonStyle} onClick={this.toggleSortOrder}>{this.state.sortOrder}</button>
+    <button onClick={this.toggleSortOrder} style={arrowImageStyle}>{this.state.sortOrder == 'asc' ? <img src={upArrow} style={arrowImageStyle}></img> : <img src={downArrow} style={arrowImageStyle}></img>}</button>
           </div>
         </section>
         <div style={listStyle}>
