@@ -195,7 +195,7 @@ class App extends Component {
     }
 
     return (
-      <div style={{textAlign: 'center', backgroundColor: 'rgb(49, 49, 66)'}}>
+      <div style={{textAlign: 'center', backgroundColor: 'rgba(20, 20, 52, 0.85)'}}>
         <header style={headerStyle}>
           <img style={fliXieStyle} src={flixieTitle} alt='title'></img>
         </header>
