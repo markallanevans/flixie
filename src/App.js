@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieList from './Components/MovieList';
 import GenreList from './Components/GenreList';
+// import LightBoxCarousel from './Components/LightBoxCarousel';
 
 const movie_API_KEY = '?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed';
 const genreListUrl = 'https://api.themoviedb.org/3/genre/movie/list';
@@ -106,7 +107,7 @@ class App extends Component {
   }
   
   toggleSortOrder() {
-    let newOrder = this.state.sortOrder == 'asc' ? 'desc' : 'asc';
+    let newOrder = this.state.sortOrder === 'asc' ? 'desc' : 'asc';
     this.setState( { sortOrder: newOrder} );
   }
   
@@ -119,7 +120,6 @@ class App extends Component {
     const downArrow = require('./images/downArrow.png');
     const arrowImageStyle = {
       padding: '0',
-      width: '36px',
       width: '36px',
       backgroundColor: 'transparent',
       verticalAlign: 'middle',
@@ -173,16 +173,24 @@ class App extends Component {
 
     const buttonStyle = {
       textTransform: 'uppercase',
-      height: '36px',
+      height: '24px',
       background: '#222244',
       color: '#9999aa',
-      fontSize: '16px',
+      fontSize: '14px',
       textAlign: 'center',
       border: '1px #444455',
       boxShadow: '0 0 3px #9999aa',
-      margin: '16px 8px',
+      margin: '8px',
       cursor: 'pointer'
     }
+
+  //   const lightBoxContainer = {
+  //     position: 'fixed',
+  //     height: '90%',
+  //     width: '100%',
+  //     top: '5%',
+  //     overflowX: 'scroll',
+  // }
 
     const searchRow = {
       width: '100%',
@@ -202,16 +210,16 @@ class App extends Component {
         <section id="searchandsort">
           <div style={searchRow}>
             <input style={inputStyle} ref="searchBox" className="w-40" placeholder={this.state.searchText} onChange={(userText) => this.filterMovies(userText.target.value)} />
-            <img src={require('./images/refresh_icon.png')} style={{maxWidth: '40px', verticalAlign: 'middle', cursor: 'pointer'}} onClick={this.refreshFilter.bind(this)}></img>
+            <img src={require('./images/refresh_icon.png')} style={{maxWidth: '40px', verticalAlign: 'middle', cursor: 'pointer'}} onClick={this.refreshFilter.bind(this)} alt="refreshicon"></img>
             <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
           </div>
           <div style={sortRow}>  
             <GenreList setGenre={this.setGenre} genres={this.state.genres} sortOrder={this.state.sortOrder} />
             <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'title'})} selected="selected">Title</button>
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'popularity'})}>Popularity</button>
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'vote_average'})}>Votes</button>
             <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'genres_id[0]'})}>Genre</button>
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'release_date'})}>Release Date</button>
-    <button onClick={this.toggleSortOrder} style={arrowImageStyle}>{this.state.sortOrder == 'asc' ? <img src={upArrow} style={arrowImageStyle}></img> : <img src={downArrow} style={arrowImageStyle}></img>}</button>
+            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'release_date'})}>Date</button>
+    <button onClick={this.toggleSortOrder} style={arrowImageStyle}>{this.state.sortOrder === 'asc' ? <img src={upArrow} style={arrowImageStyle} alt="uparrow"></img> : <img src={downArrow} style={arrowImageStyle} alt="downArrow"></img>}</button>
           </div>
         </section>
         <div style={listStyle}>

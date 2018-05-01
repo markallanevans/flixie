@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releaseDate, overview} ) => {
+const MovieCard = ( {id, title, renderLightBox, fullResUrl, posterSrc, voteCount, popularity, score, posterPath, releaseDate, overview} ) => {
 
     const cardStyle = {
         padding: '10px',
@@ -21,7 +21,7 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
     }
 
     const titleStyle = {
-        display: 'flex',
+        display: 'inline-block',
         width: '108%',
         minHeight: '48px',
         color: '#bbbbcc',
@@ -31,7 +31,6 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
         marginTop: '-16px',
         marginBottom: '16px',
         marginLeft: '-16px',
-        display: 'block',
         textAlign: 'center',
         borderBottom: '1px solid #444455',
         backgroundColor: '#111133',
@@ -42,8 +41,8 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
     const posterStyle = {
         border: '1px solid #444455',
         boxShadow: '0 0 25px 0 #333355',
-
     }
+
     // const scoreStyle = {
     //     position: 'relative',
     //     width: '100px',
@@ -54,13 +53,16 @@ const MovieCard = ( {id, title, voteCount, popularity, score, posterPath, releas
     //     borderRadius: '50%'
     // }
 
+
+
     return(
         <div style={cardStyle} className='border-rounded'>
             <div style={titleStyle}>
                 <h1 style={{paddingLeft: '16px'}}> {title} </h1>
             </div>
             {/*<div style={scoreStyle}><p style={{}}> {score} </p></div>*/}
-            <img src={posterPath} className='border-rounded' style={posterStyle} alt=''></img>
+            {/* <img src={posterPath} name={id} className='border-rounded' style={posterStyle} alt='' onClick={() => renderLightBox(fullResUrl+posterSrc)}></img> */}
+            <img src={posterPath} name={id} className='border-rounded' style={posterStyle} alt=''></img>
             
             <div style={captionStyle}>
                 <div style={{marginBottom: '8px', padding: '8px', float: 'left', backgroundColor: '#111133'}}> <strong>Release date:</strong> {releaseDate}</div>
