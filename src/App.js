@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MovieList from './Components/MovieList';
-import GenreList from './Components/GenreList';
+import SortableMovieList from './Components/SortableMovieList';
+
 // import LightBoxCarousel from './Components/LightBoxCarousel';
 
 const movie_API_KEY = '?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed';
@@ -114,18 +114,8 @@ class App extends Component {
   render() {
     
     //const headerBackground = require("./images/headerbackground.png")
-    const backGroundUrl = require("./images/fancy-pants.jpg")
+    
     const flixieTitle = require('./images/fliXie_dark.png')
-    const upArrow = require('./images/upArrow.png');
-    const downArrow = require('./images/downArrow.png');
-    const arrowImageStyle = {
-      padding: '0',
-      width: '36px',
-      backgroundColor: 'transparent',
-      verticalAlign: 'middle',
-      border: 'none',
-
-    };
     
     const headerStyle = {
       width: '100%',
@@ -147,17 +137,6 @@ class App extends Component {
       width: '80%',
       height: 'auto',
       bottom: '0px',
-    }
-
-    const listStyle = {
-      backgroundImage: `url(${backGroundUrl})`,
-      backgroundAttachment: 'fixed',
-      position: 'relative',
-      paddingTop: '40px',
-      display: 'flex',
-      width: '100%',
-      flexFlow: 'row wrap',
-      justifyContent: 'center' 
     }
 
     const inputStyle = {
@@ -184,23 +163,10 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-  //   const lightBoxContainer = {
-  //     position: 'fixed',
-  //     height: '90%',
-  //     width: '100%',
-  //     top: '5%',
-  //     overflowX: 'scroll',
-  // }
-
     const searchRow = {
       width: '100%',
       float: 'left'
-    }
-    
-    const sortRow = {
-      width: '100%',
-      float: 'left'
-    }
+    };
 
     return (
       <div style={{textAlign: 'center', backgroundColor: 'rgba(20, 20, 52, 0.85)'}}>
@@ -213,18 +179,13 @@ class App extends Component {
             <img src={require('./images/refresh_icon.png')} style={{maxWidth: '40px', verticalAlign: 'middle', cursor: 'pointer'}} onClick={this.refreshFilter.bind(this)} alt="refreshicon"></img>
             <button style={buttonStyle} className="button w-30" onClick={this.displayNowPlaying}>Now Playing</button>
           </div>
-          <div style={sortRow}>  
-            <GenreList setGenre={this.setGenre} genres={this.state.genres} sortOrder={this.state.sortOrder} />
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'title'})} selected="selected">Title</button>
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'vote_average'})}>Votes</button>
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'genres_id[0]'})}>Genre</button>
-            <button style={buttonStyle} onClick={() => this.setState({sortCriteria: 'release_date'})}>Date</button>
-    <button onClick={this.toggleSortOrder} style={arrowImageStyle}>{this.state.sortOrder === 'asc' ? <img src={upArrow} style={arrowImageStyle} alt="uparrow"></img> : <img src={downArrow} style={arrowImageStyle} alt="downArrow"></img>}</button>
-          </div>
         </section>
-        <div style={listStyle}>
-        <MovieList movies={this.state.movies} loaded={this.state.loaded} sortCriteria={this.state.sortCriteria} sortOrder={this.state.sortOrder} />
-        </div>
+        <SortableMovieList
+          movies={this.state.movies}
+          loaded={this.state.loaded}
+          setGenre={this.setGenre}
+          genres={this.state.genres}  
+        />
       </div>
     );
   }
