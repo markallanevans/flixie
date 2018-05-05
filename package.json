@@ -1,7 +1,7 @@
 {
   "name": "flixie2",
   "version": "0.1.0",
-  "homepage": "http://maktubhelou.github.io/flixie-prod",
+  "homepage": "http://maktubhelou.github.io/flixie-source-code",
   "private": true,
   "dependencies": {
     "react": "^16.3.2",
