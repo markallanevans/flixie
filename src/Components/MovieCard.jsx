@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MovieCard = ( {id, title, renderLightBox, fullResUrl, posterSrc, voteCount, popularity, score, posterPath, releaseDate, overview} ) => {
 
@@ -25,7 +26,6 @@ const MovieCard = ( {id, title, renderLightBox, fullResUrl, posterSrc, voteCount
         width: '108%',
         minHeight: '48px',
         color: '#bbbbcc',
-        // lineHeight: '56px',
         paddingTop: '8px',
         paddingBottom: '8px',
         marginTop: '-16px',
@@ -43,25 +43,13 @@ const MovieCard = ( {id, title, renderLightBox, fullResUrl, posterSrc, voteCount
         boxShadow: '0 0 25px 0 #333355',
     }
 
-    // const scoreStyle = {
-    //     position: 'relative',
-    //     width: '100px',
-    //     height: '100px',
-    //     top: '80px',
-    //     left: '350px',
-    //     backgroundColor: 'red',
-    //     borderRadius: '50%'
-    // }
-
-
 
     return(
         <div style={cardStyle} className='border-rounded'>
             <div style={titleStyle}>
                 <h1 style={{paddingLeft: '16px'}}> {title} </h1>
             </div>
-            {/*<div style={scoreStyle}><p style={{}}> {score} </p></div>*/}
-            {/* <img src={posterPath} name={id} className='border-rounded' style={posterStyle} alt='' onClick={() => renderLightBox(fullResUrl+posterSrc)}></img> */}
+
             <img src={posterPath} name={id} className='border-rounded' style={posterStyle} alt=''></img>
             
             <div style={captionStyle}>
@@ -73,6 +61,20 @@ const MovieCard = ( {id, title, renderLightBox, fullResUrl, posterSrc, voteCount
             </div>
         </div>
     );
+}
+
+MovieCard.propTypes = {
+    id: PropTypes.number,
+    title: PropTypes.string,
+    renderLightBox: PropTypes.string,
+    fullResUrl: PropTypes.string,
+    posterSrc: PropTypes.string,
+    voteCount: PropTypes.number,
+    popularity: PropTypes.number,
+    score: PropTypes.number,
+    posterPath: PropTypes.string,
+    releaseDate: PropTypes.string,
+    overview: PropTypes.string,
 }
 
 export default MovieCard;
