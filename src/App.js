@@ -184,7 +184,7 @@ class App extends Component {
           movies={this.state.movies}
           loaded={this.state.loaded}
           setGenre={this.setGenre}
-          genres={this.state.genres}  
+          genres={this.state.genres}
         />
       </div>
     );

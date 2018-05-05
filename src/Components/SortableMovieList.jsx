@@ -51,6 +51,7 @@ class SortableMovieList extends Component {
         };
 
         this.sortList = this.sortList.bind(this);
+        this.toggleSortOrder = this.toggleSortOrder.bind(this);
     }
 
     sortList = (key, order = this.props.sortOrder) => {
@@ -75,7 +76,10 @@ class SortableMovieList extends Component {
       };
     }
 
-
+    toggleSortOrder() {
+        let newOrder = this.state.sortOrder === 'asc' ? 'desc' : 'asc';
+        this.setState( { sortOrder: newOrder} );
+    }
 
     render() {
         if(!this.props.loaded) return (<div className="loader" />)
