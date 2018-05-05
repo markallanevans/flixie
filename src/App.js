@@ -106,11 +106,6 @@ class App extends Component {
     this.genreQuery(genreID);
   }
   
-  toggleSortOrder() {
-    let newOrder = this.state.sortOrder === 'asc' ? 'desc' : 'asc';
-    this.setState( { sortOrder: newOrder} );
-  }
-  
   render() {
     
     //const headerBackground = require("./images/headerbackground.png")
