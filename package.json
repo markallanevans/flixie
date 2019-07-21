@@ -14,8 +14,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "yarn run build"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
@@ -25,7 +24,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
-    "gh-pages": "^1.1.0",
+    "gh-pages": "^2.0.1",
     "prettier": "^1.18.2"
   }
 }
