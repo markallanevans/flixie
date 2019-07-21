@@ -1,9 +1,10 @@
 {
   "name": "flixie2",
   "version": "0.1.1",
-  "homepage": "http://maktubhelou.github.io/flixie-source-code",
+  "homepage": "http://maktubhelou.github.io/flixie",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -14,7 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run build"
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
