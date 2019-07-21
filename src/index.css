@@ -3,10 +3,11 @@
 
 body {
   background-color: #deddf0;
-  margin: 0;
+  margin: auto;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  width: 100%
+  width: 100%;
+  max-width: 1312px;
 }
 
 h1 {
@@ -14,7 +15,7 @@ h1 {
 }
 
 .border-rounded {
-  border-radius: 5px
+  border-radius: 5px;
 }
 
 .button:hover {
@@ -41,7 +42,6 @@ h1 {
 .w-50 {
   width: 50%;
 }
-
 
 .loader {
   position: relative;

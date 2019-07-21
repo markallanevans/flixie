@@ -13,7 +13,7 @@ const styles = {
     width: '36px',
     backgroundColor: 'transparent',
     verticalAlign: 'middle',
-    border: 'none'
+    border: 'none',
   },
   buttonStyle: {
     textTransform: 'uppercase',
@@ -25,7 +25,7 @@ const styles = {
     border: '1px #444455',
     boxShadow: '0 0 3px #9999aa',
     margin: '8px',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   listStyle: {
     backgroundImage: `url(${backGroundUrl})`,
@@ -35,12 +35,12 @@ const styles = {
     display: 'flex',
     width: '100%',
     flexFlow: 'row wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   sortRow: {
     width: '100%',
-    float: 'left'
-  }
+    float: 'left',
+  },
 };
 
 class SortableMovieList extends Component {
@@ -51,14 +51,14 @@ class SortableMovieList extends Component {
 
     this.state = {
       sortCriteria: 'title',
-      sortOrder: 'asc'
+      sortOrder: 'asc',
     };
   }
 
   toggleSortOrder = () => {
     this.setState(prevState => {
       return {
-        sortOrder: prevState.sortOrder === 'asc' ? 'desc' : 'asc'
+        sortOrder: prevState.sortOrder === 'asc' ? 'desc' : 'asc',
       };
     });
   };
@@ -154,7 +154,7 @@ SortableMovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   loaded: PropTypes.bool.isRequired,
   setGenre: PropTypes.func.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.object).isRequired
+  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SortableMovieList;

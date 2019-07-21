@@ -1,127 +1,113 @@
-import React, { Component } from "react";
-import SortableMovieList from "./Components/SortableMovieList";
+import React, { Component } from 'react';
+import Api from './services/Api';
+import SortableMovieList from './Components/SortableMovieList';
+import { COLLECTIONS } from './config/tmdb';
 
-const movie_API_KEY = "?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
-const genreListUrl = "https://api.themoviedb.org/3/genre/movie/list";
-const movie_API_URL = "https://api.themoviedb.org/3/movie/";
-const BASE_URL = "https://api.themoviedb.org/3/genre/";
-
-const flixieTitle = require("./images/fliXie_dark.png");
+const { NOW_PLAYING, POPULAR } = COLLECTIONS;
+const flixieTitle = require('./images/fliXie_dark.png');
 
 const styles = {
   headerWrapper: {
-    textAlign: "center",
-    backgroundColor: "rgba(20, 20, 52, 0.85)"
+    textAlign: 'center',
+    backgroundColor: 'rgba(20, 20, 52, 0.85)',
   },
   headerStyle: {
-    width: "100%",
-    height: "400px",
-    backgroundImage: "linear-gradient(#000022, #eeeeff)",
-    backgroundColor: "#9999aa",
-    backgroundPosition: "center 95%",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    color: "#fff",
-    paddingTop: "40px",
-    paddingBottom: "20px",
-    display: "table-cell",
-    verticalAlign: "bottom"
+    width: '100%',
+    height: '400px',
+    backgroundImage: 'linear-gradient(#000022, #eeeeff)',
+    backgroundColor: '#9999aa',
+    backgroundPosition: 'center 95%',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    color: '#fff',
+    paddingTop: '40px',
+    paddingBottom: '20px',
+    display: 'table-cell',
+    verticalAlign: 'bottom',
   },
   fliXieStyle: {
-    width: "80%",
-    height: "auto",
-    bottom: "0px"
+    width: '80%',
+    height: 'auto',
+    bottom: '0px',
   },
   inputStyle: {
-    height: "24px",
-    background: "#111133",
-    color: "White",
-    fontSize: "16px",
-    textAlign: "center",
-    border: "none",
-    borderBottom: "2px solid #444455",
-    margin: "10px 10px"
+    height: '24px',
+    background: '#111133',
+    color: 'White',
+    fontSize: '16px',
+    textAlign: 'center',
+    border: 'none',
+    borderBottom: '2px solid #444455',
+    margin: '10px 10px',
   },
   buttonStyle: {
-    textTransform: "uppercase",
-    height: "24px",
-    background: "#222244",
-    color: "#9999aa",
-    fontSize: "14px",
-    textAlign: "center",
-    border: "1px #444455",
-    boxShadow: "0 0 3px #9999aa",
-    margin: "8px",
-    cursor: "pointer"
+    textTransform: 'uppercase',
+    height: '24px',
+    background: '#222244',
+    color: '#9999aa',
+    fontSize: '14px',
+    textAlign: 'center',
+    border: '1px #444455',
+    boxShadow: '0 0 3px #9999aa',
+    margin: '8px',
+    cursor: 'pointer',
   },
   searchRow: {
-    width: "100%",
-    float: "left"
+    width: '100%',
+    float: 'left',
   },
   refreshIcon: {
-    maxWidth: "40px",
-    verticalAlign: "middle",
-    cursor: "pointer"
-  }
+    maxWidth: '40px',
+    verticalAlign: 'middle',
+    cursor: 'pointer',
+  },
 };
 
 class App extends Component {
   constructor() {
     super();
+
+    this.collectionQuery = this.collectionQuery.bind(this);
+    this.toggleNowPlaying = this.toggleNowPlaying.bind(this);
+    this.genreQuery = this.genreQuery.bind(this);
+    this.fetchGenres = this.fetchGenres.bind(this);
+    this.toggleSortOrder = this.toggleSortOrder.bind(this);
+
+    this.api = new Api();
+
     this.state = {
       fullMovieList: [],
       movies: [],
       genres: [],
-      collection: "popular",
-      searchText: "Search...",
+      collection: COLLECTIONS.POPULAR,
+      searchText: 'Search...',
       loaded: false,
-      sortCriteria: "title",
-      sortOrder: "asc"
+      sortCriteria: 'title',
+      sortOrder: 'asc',
     };
-    this.collectionQuery = this.collectionQuery.bind(this);
-    this.displayNowPlaying = this.displayNowPlaying.bind(this);
-    this.genreQuery = this.genreQuery.bind(this);
-    this.fetchGenres = this.fetchGenres.bind(this);
-    this.toggleSortOrder = this.toggleSortOrder.bind(this);
   }
 
   async fetchGenres() {
-    const query = genreListUrl + movie_API_KEY;
-    const data = await fetch(query);
-    const response = await data.json();
-    const genresResults = response.genres;
-    this.setState({ genres: genresResults });
+    const genres = await this.api.getGenres();
+    this.setState({ genres });
   }
 
   async collectionQuery(collection) {
-    const query = movie_API_URL + collection + movie_API_KEY;
-    const data = await fetch(query);
-    const response = await data.json();
-    const fullMovieList = response.results;
-    let collectionCheck = collection;
-    if (this.state.movies.length > 0 && collectionCheck !== "now_playing") {
-      return;
-    } else {
-      this.setState({
-        fullMovieList: fullMovieList,
-        movies: fullMovieList,
-        loaded: true
-      });
-    }
+    const fullMovieList = await this.api.getCollection(collection);
+
+    this.setState({
+      fullMovieList,
+      movies: fullMovieList,
+      loaded: true,
+    });
   }
 
   async genreQuery(genreID) {
-    const genreApiCall =
-      "/movies?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&include_adult=false&sort_by=created_at.asc";
-    const genreQueryURI = BASE_URL + genreID + genreApiCall;
-
-    const data = await fetch(genreQueryURI);
-    const response = await data.json();
-    const moviesOfGenre = response.results;
+    const moviesOfGenre = await this.api.getMoviesOfGenre(genreID);
 
     this.setState({
       fullMovieList: moviesOfGenre,
-      movies: moviesOfGenre
+      movies: moviesOfGenre,
     });
   }
 
@@ -133,39 +119,42 @@ class App extends Component {
   filterMovies(filterText) {
     const allMovies = this.state.fullMovieList;
     const filteredMovies = allMovies.filter(
-      m => m.title.toLowerCase().indexOf(filterText.toLowerCase()) !== -1
+      m => m.title.toLowerCase().indexOf(filterText.toLowerCase()) !== -1,
     );
     this.setState({
-      movies: filteredMovies
+      movies: filteredMovies,
     });
   }
 
   refreshFilter() {
     const allMovies = this.state.fullMovieList;
-    this.refs.searchBox.value = "";
+    this.refs.searchBox.value = '';
     this.setState({
       movies: allMovies,
-      searchText: ""
+      searchText: '',
     });
   }
 
-  displayNowPlaying() {
-    const nowPlaying = "now_playing";
-    this.collectionQuery(nowPlaying);
+  toggleNowPlaying() {
+    const { collection } = this.state;
+    const newCollection = collection === NOW_PLAYING ? POPULAR : NOW_PLAYING;
+    this.collectionQuery(newCollection);
+    this.setState({ collection: newCollection });
   }
 
   setGenre = event => {
     const genreID = event.target.value;
-    this.collectionQuery(genreID);
     this.genreQuery(genreID);
   };
 
   toggleSortOrder() {
-    let newOrder = this.state.sortOrder === "asc" ? "desc" : "asc";
+    const newOrder = this.state.sortOrder === 'asc' ? 'desc' : 'asc';
     this.setState({ sortOrder: newOrder });
   }
 
   render() {
+    const { searchText, collection, movies, loaded, genres } = this.state;
+
     return (
       <div style={styles.headerWrapper}>
         <header style={styles.headerStyle}>
@@ -177,11 +166,11 @@ class App extends Component {
               style={styles.inputStyle}
               ref="searchBox"
               className="w-40"
-              placeholder={this.state.searchText}
+              placeholder={searchText}
               onChange={userText => this.filterMovies(userText.target.value)}
             />
             <img
-              src={require("./images/refresh_icon.png")}
+              src={require('./images/refresh_icon.png')}
               style={styles.refreshIcon}
               onClick={this.refreshFilter.bind(this)}
               alt="refreshicon"
@@ -189,17 +178,17 @@ class App extends Component {
             <button
               style={styles.buttonStyle}
               className="button w-30"
-              onClick={this.displayNowPlaying}
+              onClick={this.toggleNowPlaying}
             >
-              Now Playing
+              {collection === NOW_PLAYING ? 'Popular' : 'Now Playing'}
             </button>
           </div>
         </section>
         <SortableMovieList
-          movies={this.state.movies}
-          loaded={this.state.loaded}
+          movies={movies}
+          loaded={loaded}
           setGenre={this.setGenre}
-          genres={this.state.genres}
+          genres={genres}
         />
       </div>
     );
