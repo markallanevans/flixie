@@ -2,39 +2,73 @@ import config from '../config'
 
 const apiKeyTMDB = config.KEYS.TMDB_API_KEY
 const { NOW_PLAYING } = config.TMDB.COLLECTIONS
-const genreListUrl = 'https://api.themoviedb.org/3/genre/movie/list'
-const apiUrlTMDB = 'https://api.themoviedb.org/3/movie/'
+
 const ENDPOINT = 'https://api.themoviedb.org/'
-const GENRE_LIST_QUERY_PATH = '3/genre/'
+const API_URL_GET_POSTER = 'https://image.tmdb.org/t/p/w300'
+const API_URL_GET_MOVIES_BY_GENRE = `${ENDPOINT}/3/genre/{genreId}/movies?language=en-US&include_adult=false&sort_by=created_at.asc&api_key=${apiKeyTMDB}`
+const API_URL_GET_GENRES = `${ENDPOINT}3/genre/movie/list?api_key=${apiKeyTMDB}`
+const API_URL_GET_COLLECTION = `${ENDPOINT}3/movie/{collection}?api_key=${apiKeyTMDB}`
 
 class ApiProvider {
   async getGenres() {
-    const query = `${genreListUrl}?api_key=${apiKeyTMDB}`
-    const data = await fetch(query)
-    const response = await data.json()
-    const genresResults = response.genres
-    return genresResults
+    const url = API_URL_GET_GENRES
+
+    try {
+      const data = await fetch(url)
+      const response = await data.json()
+
+      return response.genres
+    } catch (e) {
+      console.warn(e)
+    }
   }
 
-  async getMoviesOfGenre(genreID) {
-    const genreApiCall =
-      '/movies?language=en-US&include_adult=false&sort_by=created_at.asc&'
-    const genreQueryURI = `${ENDPOINT +
-      GENRE_LIST_QUERY_PATH +
-      genreID +
-      genreApiCall}api_key=${apiKeyTMDB}`
-    const data = await fetch(genreQueryURI)
-    const response = await data.json()
-    const moviesOfGenre = response.results
-    return moviesOfGenre
+  async getMoviesOfGenre(genreId) {
+    const url = API_URL_GET_MOVIES_BY_GENRE.replace('{genreId}', genreId)
+
+    try {
+      const data = await fetch(url)
+      const response = await data.json()
+      const { results } = response
+      const movies = this.getMovieModel(results)
+
+      return movies
+    } catch (e) {
+      console.warn(e)
+    }
   }
 
   async getCollection(collection = NOW_PLAYING) {
-    const query = `${apiUrlTMDB + collection}?api_key=${apiKeyTMDB}`
-    const data = await fetch(query)
-    const response = await data.json()
-    const fullMovieList = response.results
-    return fullMovieList
+    const url = API_URL_GET_COLLECTION.replace('{collection}', collection)
+
+    try {
+      const data = await fetch(url)
+      const response = await data.json()
+      const { results } = response
+      const movies = this.getMovieModel(results)
+
+      return movies
+    } catch (e) {
+      console.warn(e)
+    }
+  }
+
+  getMovieModel(results) {
+    const movies = []
+    for (const movie of results) {
+      movies.push({
+        id: movie.id,
+        title: movie.title,
+        voteCount: movie.vote_count,
+        popularity: movie.popularity,
+        score: movie.vote_average,
+        releaseDate: movie.release_date,
+        overview: movie.overview,
+        posterPath: API_URL_GET_POSTER + movie.poster_path,
+      })
+    }
+
+    return movies
   }
 }
 
