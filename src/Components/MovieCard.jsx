@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import CaptionDetail from './CaptionDetail'
 
 const styles = {
   cardStyle: {
@@ -11,7 +12,7 @@ const styles = {
     color: '#eeeeee',
     textAlign: 'center',
   },
-  captionStyle: {
+  captionWrapper: {
     color: '#888899',
     height: '150px',
     padding: '10px',
@@ -41,18 +42,6 @@ const styles = {
   headerStyle: {
     paddingLeft: '16px',
   },
-  captionLeft: {
-    marginBottom: '8px',
-    padding: '8px',
-    float: 'left',
-    backgroundColor: '#111133',
-  },
-  captionRight: {
-    marginBottom: '8px',
-    padding: '8px',
-    float: 'right',
-    backgroundColor: '#111133',
-  },
   overview: {
     marginBottom: '8px',
     padding: '8px',
@@ -60,16 +49,26 @@ const styles = {
   },
 }
 
-const MovieCard = ({
-  id,
-  title,
-  voteCount,
-  popularity,
-  score,
-  posterPath,
-  releaseDate,
-  overview,
-}) => {
+const MovieCard = ({ movie }) => {
+  const {
+    id,
+    title,
+    voteCount,
+    popularity,
+    score,
+    releaseDate,
+    overview,
+    posterPath,
+  } = movie
+
+  const roundedPopularity = Math.floor(popularity)
+  const captionDetails = [
+    { id: 0, title: 'Release Date', content: releaseDate },
+    { id: 1, title: 'Vote average', content: score },
+    { id: 2, title: 'Vote count', content: voteCount },
+    { id: 3, title: 'Popularity', content: roundedPopularity },
+  ]
+
   return (
     <div style={styles.cardStyle} className="border-rounded">
       <div style={styles.titleStyle}>
@@ -84,23 +83,15 @@ const MovieCard = ({
         alt=""
       />
 
-      <div style={styles.captionStyle}>
-        <div style={styles.captionLeft}>
-          <strong>Release date: </strong>
-          {releaseDate}
-        </div>
-        <div style={styles.captionRight}>
-          <strong>Vote average: </strong>
-          {score}
-        </div>
-        <div style={styles.captionLeft}>
-          <strong>Vote Count: </strong>
-          {voteCount}
-        </div>
-        <div style={styles.captionRight}>
-          <strong>Popularity: </strong>
-          {popularity}
-        </div>
+      <div style={styles.captionWrapper}>
+        {captionDetails.map((detail, i) => (
+          <CaptionDetail
+            title={detail.title}
+            content={detail.content}
+            key={detail.id}
+            left={i % 2 === 0}
+          />
+        ))}
         <div style={styles.overview}>{overview}</div>
       </div>
     </div>
@@ -108,14 +99,16 @@ const MovieCard = ({
 }
 
 MovieCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  voteCount: PropTypes.number.isRequired,
-  popularity: PropTypes.number.isRequired,
-  score: PropTypes.number.isRequired,
-  posterPath: PropTypes.string.isRequired,
-  releaseDate: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    voteCount: PropTypes.number.isRequired,
+    popularity: PropTypes.number.isRequired,
+    score: PropTypes.number.isRequired,
+    releaseDate: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    posterPath: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default MovieCard

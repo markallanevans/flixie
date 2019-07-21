@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MovieCard from './MovieCard'
 
-const posterBaseUrl = 'https://image.tmdb.org/t/p/'
-const posterSize = 'w300'
-const fullResUrl = `${posterBaseUrl}original`
-
 const styles = {
   wrapper: {
     minHeight: '300px',
@@ -22,22 +18,7 @@ class MovieList extends Component {
     const { movies } = this.props
     if (movies.length > 0) {
       const elements = movies.map(movie => {
-        return (
-          <MovieCard
-            key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            score={movie.vote_average}
-            posterPath={posterBaseUrl + posterSize + movie.poster_path}
-            fullResUrl={fullResUrl}
-            posterSrc={movie.poster_path}
-            releaseDate={movie.release_date}
-            overview={movie.overview}
-            voteCount={movie.vote_count}
-            popularity={Math.floor(movie.popularity)}
-            renderLightBox={this.renderLightBox}
-          />
-        )
+        return <MovieCard key={movie.id} id={movie.id} movie={movie} />
       })
       return elements
     }

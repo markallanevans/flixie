@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CaptionDetail /> matches snapshot 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#111133",
+      "float": "right",
+      "marginBottom": "8px",
+      "padding": "8px",
+    }
+  }
+>
+  <strong>
+    Rating: 
+  </strong>
+  10.0
+</div>
+`;

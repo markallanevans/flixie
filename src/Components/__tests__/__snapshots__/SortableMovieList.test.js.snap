@@ -1,6 +1,292 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SortableMovieList /> matches snapshot 1`] = `
+exports[`<SortableMovieList /> matches snapshot with data 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "float": "left",
+        "width": "100%",
+      }
+    }
+  >
+    <form>
+      <select
+        style={
+          Object {
+            "backgroundColor": "rgba(255,255,255,0.7)",
+            "border": "10px solid rgba(255,255,255,0.5)",
+          }
+        }
+      />
+    </form>
+    <button
+      onClick={[Function]}
+      selected="selected"
+      style={
+        Object {
+          "background": "#222244",
+          "border": "1px #444455",
+          "boxShadow": "0 0 3px #9999aa",
+          "color": "#9999aa",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "height": "24px",
+          "margin": "8px",
+          "textAlign": "center",
+          "textTransform": "uppercase",
+        }
+      }
+      type="button"
+    >
+      Title
+    </button>
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#222244",
+          "border": "1px #444455",
+          "boxShadow": "0 0 3px #9999aa",
+          "color": "#9999aa",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "height": "24px",
+          "margin": "8px",
+          "textAlign": "center",
+          "textTransform": "uppercase",
+        }
+      }
+      type="button"
+    >
+      Votes
+    </button>
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#222244",
+          "border": "1px #444455",
+          "boxShadow": "0 0 3px #9999aa",
+          "color": "#9999aa",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "height": "24px",
+          "margin": "8px",
+          "textAlign": "center",
+          "textTransform": "uppercase",
+        }
+      }
+      type="button"
+    >
+      Genre
+    </button>
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#222244",
+          "border": "1px #444455",
+          "boxShadow": "0 0 3px #9999aa",
+          "color": "#9999aa",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "height": "24px",
+          "margin": "8px",
+          "textAlign": "center",
+          "textTransform": "uppercase",
+        }
+      }
+      type="button"
+    >
+      Date
+    </button>
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "border": "none",
+          "padding": "0",
+          "verticalAlign": "middle",
+          "width": "36px",
+        }
+      }
+      type="button"
+    >
+      <img
+        alt="uparrow"
+        src="upArrow.png"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "border": "none",
+            "padding": "0",
+            "verticalAlign": "middle",
+            "width": "36px",
+          }
+        }
+      />
+    </button>
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundAttachment": "fixed",
+        "backgroundImage": "url(fancy-pants.jpg)",
+        "display": "flex",
+        "flexFlow": "row wrap",
+        "justifyContent": "center",
+        "paddingTop": "40px",
+        "position": "relative",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="border-rounded"
+      style={
+        Object {
+          "backgroundColor": "rgba(49, 49, 66, 0.8)",
+          "color": "#eeeeee",
+          "height": "100%",
+          "margin": "10px",
+          "maxWidth": "400px",
+          "padding": "10px",
+          "textAlign": "center",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "#111133",
+            "borderBottom": "1px solid #444455",
+            "boxShadow": "0px 4px 16px 0px #111133",
+            "color": "#bbbbcc",
+            "display": "inline-block",
+            "marginBottom": "16px",
+            "marginLeft": "-16px",
+            "marginTop": "-16px",
+            "minHeight": "48px",
+            "opacity": "0.9",
+            "paddingBottom": "8px",
+            "paddingTop": "8px",
+            "textAlign": "center",
+            "width": "108%",
+          }
+        }
+      >
+        <h1
+          style={
+            Object {
+              "paddingLeft": "16px",
+            }
+          }
+        >
+          One Coder Flew Over the Cuckoo's Nest
+        </h1>
+      </div>
+      <img
+        alt=""
+        className="border-rounded"
+        name={1}
+        style={
+          Object {
+            "border": "1px solid #444455",
+            "boxShadow": "0 0 25px 0 #333355",
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "color": "#888899",
+            "height": "150px",
+            "overflowY": "scroll",
+            "padding": "10px",
+            "textAlign": "justify",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "backgroundColor": "#111133",
+              "float": "left",
+              "marginBottom": "8px",
+              "padding": "8px",
+            }
+          }
+        >
+          <strong>
+            Release Date: 
+          </strong>
+          2019-05-22
+        </div>
+        <div
+          style={
+            Object {
+              "backgroundColor": "#111133",
+              "float": "right",
+              "marginBottom": "8px",
+              "padding": "8px",
+            }
+          }
+        >
+          <strong>
+            Vote average: 
+          </strong>
+          9.9
+        </div>
+        <div
+          style={
+            Object {
+              "backgroundColor": "#111133",
+              "float": "left",
+              "marginBottom": "8px",
+              "padding": "8px",
+            }
+          }
+        >
+          <strong>
+            Vote count: 
+          </strong>
+          1245
+        </div>
+        <div
+          style={
+            Object {
+              "backgroundColor": "#111133",
+              "float": "right",
+              "marginBottom": "8px",
+              "padding": "8px",
+            }
+          }
+        >
+          <strong>
+            Popularity: 
+          </strong>
+          567
+        </div>
+        <div
+          style={
+            Object {
+              "clear": "both",
+              "marginBottom": "8px",
+              "padding": "8px",
+            }
+          }
+        >
+          A story of how one coder lost his mind trying to read his old code.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<SortableMovieList /> matches snapshot without data 1`] = `
 <div
   className="loader"
 />

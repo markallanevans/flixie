@@ -41,11 +41,14 @@ exports[`<MovieCard /> matches snapshot 1`] = `
           "paddingLeft": "16px",
         }
       }
-    />
+    >
+      One Coder Flew Over the Cuckoo's Nest
+    </h1>
   </div>
   <img
     alt=""
     className="border-rounded"
+    name={1}
     style={
       Object {
         "border": "1px solid #444455",
@@ -75,8 +78,9 @@ exports[`<MovieCard /> matches snapshot 1`] = `
       }
     >
       <strong>
-        Release date: 
+        Release Date: 
       </strong>
+      2019-05-22
     </div>
     <div
       style={
@@ -91,6 +95,7 @@ exports[`<MovieCard /> matches snapshot 1`] = `
       <strong>
         Vote average: 
       </strong>
+      9.9
     </div>
     <div
       style={
@@ -103,8 +108,9 @@ exports[`<MovieCard /> matches snapshot 1`] = `
       }
     >
       <strong>
-        Vote Count: 
+        Vote count: 
       </strong>
+      1245
     </div>
     <div
       style={
@@ -119,6 +125,7 @@ exports[`<MovieCard /> matches snapshot 1`] = `
       <strong>
         Popularity: 
       </strong>
+      567
     </div>
     <div
       style={
@@ -128,7 +135,9 @@ exports[`<MovieCard /> matches snapshot 1`] = `
           "padding": "8px",
         }
       }
-    />
+    >
+      A story of how one coder lost his mind trying to read his old code.
+    </div>
   </div>
 </div>
 `;
