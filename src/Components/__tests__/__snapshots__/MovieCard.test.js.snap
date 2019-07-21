@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieCard /> matches snapshot 1`] = `
+<div
+  className="border-rounded"
+  style={
+    Object {
+      "backgroundColor": "rgba(49, 49, 66, 0.8)",
+      "color": "#eeeeee",
+      "height": "100%",
+      "margin": "10px",
+      "maxWidth": "400px",
+      "padding": "10px",
+      "textAlign": "center",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": "#111133",
+        "borderBottom": "1px solid #444455",
+        "boxShadow": "0px 4px 16px 0px #111133",
+        "color": "#bbbbcc",
+        "display": "inline-block",
+        "marginBottom": "16px",
+        "marginLeft": "-16px",
+        "marginTop": "-16px",
+        "minHeight": "48px",
+        "opacity": "0.9",
+        "paddingBottom": "8px",
+        "paddingTop": "8px",
+        "textAlign": "center",
+        "width": "108%",
+      }
+    }
+  >
+    <h1
+      style={
+        Object {
+          "paddingLeft": "16px",
+        }
+      }
+    />
+  </div>
+  <img
+    alt=""
+    className="border-rounded"
+    style={
+      Object {
+        "border": "1px solid #444455",
+        "boxShadow": "0 0 25px 0 #333355",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "color": "#888899",
+        "height": "150px",
+        "overflowY": "scroll",
+        "padding": "10px",
+        "textAlign": "justify",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "#111133",
+          "float": "left",
+          "marginBottom": "8px",
+          "padding": "8px",
+        }
+      }
+    >
+      <strong>
+        Release date: 
+      </strong>
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#111133",
+          "float": "right",
+          "marginBottom": "8px",
+          "padding": "8px",
+        }
+      }
+    >
+      <strong>
+        Vote average: 
+      </strong>
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#111133",
+          "float": "left",
+          "marginBottom": "8px",
+          "padding": "8px",
+        }
+      }
+    >
+      <strong>
+        Vote Count: 
+      </strong>
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#111133",
+          "float": "right",
+          "marginBottom": "8px",
+          "padding": "8px",
+        }
+      }
+    >
+      <strong>
+        Popularity: 
+      </strong>
+    </div>
+    <div
+      style={
+        Object {
+          "clear": "both",
+          "marginBottom": "8px",
+          "padding": "8px",
+        }
+      }
+    />
+  </div>
+</div>
+`;

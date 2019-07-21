@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieList /> matches snapshot 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "50px",
+      "maxWidth": "300px",
+      "minHeight": "300px",
+    }
+  }
+>
+  <h1
+    style={
+      Object {
+        "color": "white",
+      }
+    }
+  >
+    There are no movies matching your search! Run away!
+  </h1>
+</div>
+`;

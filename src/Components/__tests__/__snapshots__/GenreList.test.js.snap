@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GenreList /> matches snapshot 1`] = `
+<form>
+  <select
+    style={
+      Object {
+        "backgroundColor": "rgba(255,255,255,0.7)",
+        "border": "10px solid rgba(255,255,255,0.5)",
+      }
+    }
+  />
+</form>
+`;

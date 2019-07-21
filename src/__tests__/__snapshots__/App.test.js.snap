@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> matches snapshot 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "rgba(20, 20, 52, 0.85)",
+      "textAlign": "center",
+    }
+  }
+>
+  <header
+    style={
+      Object {
+        "backgroundAttachment": "fixed",
+        "backgroundColor": "#9999aa",
+        "backgroundImage": "linear-gradient(#000022, #eeeeff)",
+        "backgroundPosition": "center 95%",
+        "backgroundRepeat": "no-repeat",
+        "color": "#fff",
+        "display": "table-cell",
+        "height": "400px",
+        "paddingBottom": "20px",
+        "paddingTop": "40px",
+        "verticalAlign": "bottom",
+        "width": "100%",
+      }
+    }
+  >
+    <img
+      alt="title"
+      src="fliXie_dark.png"
+      style={
+        Object {
+          "bottom": "0px",
+          "height": "auto",
+          "width": "80%",
+        }
+      }
+    />
+  </header>
+  <section
+    id="searchandsort"
+  >
+    <div
+      style={
+        Object {
+          "float": "left",
+          "width": "100%",
+        }
+      }
+    >
+      <input
+        className="w-40"
+        onChange={[Function]}
+        placeholder="Search..."
+        style={
+          Object {
+            "background": "#111133",
+            "border": "none",
+            "borderBottom": "2px solid #444455",
+            "color": "White",
+            "fontSize": "16px",
+            "height": "24px",
+            "margin": "10px 10px",
+            "textAlign": "center",
+          }
+        }
+      />
+      <img
+        alt="refreshicon"
+        onClick={[Function]}
+        src="refresh_icon.png"
+        style={
+          Object {
+            "cursor": "pointer",
+            "maxWidth": "40px",
+            "verticalAlign": "middle",
+          }
+        }
+      />
+      <button
+        className="button w-30"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "#222244",
+            "border": "1px #444455",
+            "boxShadow": "0 0 3px #9999aa",
+            "color": "#9999aa",
+            "cursor": "pointer",
+            "fontSize": "14px",
+            "height": "24px",
+            "margin": "8px",
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Now Playing
+      </button>
+    </div>
+  </section>
+  <div
+    className="loader"
+  />
+</div>
+`;
