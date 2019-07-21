@@ -1,17 +1,11 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
   "env": {
     "browser": true,
     "commonjs": true,
     "es6": true,
+    "jest": true,
     "node": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "sourceType": "module"
   },
   "rules": {
     "no-const-assign": "warn",

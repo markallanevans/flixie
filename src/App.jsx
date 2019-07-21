@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Api from './services/Api';
-import SortableMovieList from './Components/SortableMovieList';
-import { COLLECTIONS } from './config/tmdb';
+import React, { Component } from 'react'
+import Api from './services/Api'
+import SortableMovieList from './Components/SortableMovieList'
+import { COLLECTIONS } from './config/tmdb'
 
-const { NOW_PLAYING, POPULAR } = COLLECTIONS;
-const flixieTitle = require('./images/fliXie_dark.png');
+const { NOW_PLAYING, POPULAR } = COLLECTIONS
+const flixieTitle = require('./images/fliXie_dark.png')
 
 const styles = {
   headerWrapper: {
@@ -61,19 +61,19 @@ const styles = {
     verticalAlign: 'middle',
     cursor: 'pointer',
   },
-};
+}
 
 class App extends Component {
   constructor() {
-    super();
+    super()
 
-    this.collectionQuery = this.collectionQuery.bind(this);
-    this.toggleNowPlaying = this.toggleNowPlaying.bind(this);
-    this.genreQuery = this.genreQuery.bind(this);
-    this.fetchGenres = this.fetchGenres.bind(this);
-    this.toggleSortOrder = this.toggleSortOrder.bind(this);
+    this.collectionQuery = this.collectionQuery.bind(this)
+    this.toggleNowPlaying = this.toggleNowPlaying.bind(this)
+    this.genreQuery = this.genreQuery.bind(this)
+    this.fetchGenres = this.fetchGenres.bind(this)
+    this.toggleSortOrder = this.toggleSortOrder.bind(this)
 
-    this.api = new Api();
+    this.api = new Api()
 
     this.state = {
       fullMovieList: [],
@@ -82,78 +82,80 @@ class App extends Component {
       collection: COLLECTIONS.POPULAR,
       searchText: 'Search...',
       loaded: false,
-      sortCriteria: 'title',
       sortOrder: 'asc',
-    };
+    }
+  }
+
+  componentDidMount() {
+    this.collectionQuery(this.state.collection)
+    this.fetchGenres()
+  }
+
+  setGenre = event => {
+    const genreID = event.target.value
+    this.genreQuery(genreID)
   }
 
   async fetchGenres() {
-    const genres = await this.api.getGenres();
-    this.setState({ genres });
+    const genres = await this.api.getGenres()
+    this.setState({ genres })
+  }
+
+  refreshFilter() {
+    const { fullMovieList } = this.state
+    const allMovies = fullMovieList
+    this.refs.searchBox.value = ''
+    this.setState({
+      movies: allMovies,
+      searchText: '',
+    })
+  }
+
+  filterMovies(filterText) {
+    const { fullMovieList } = this.state
+    const allMovies = fullMovieList
+    const filteredMovies = allMovies.filter(
+      m => m.title.toLowerCase().indexOf(filterText.toLowerCase()) !== -1,
+    )
+    this.setState({
+      movies: filteredMovies,
+    })
+  }
+
+  async genreQuery(genreID) {
+    const moviesOfGenre = await this.api.getMoviesOfGenre(genreID)
+
+    this.setState({
+      fullMovieList: moviesOfGenre,
+      movies: moviesOfGenre,
+    })
   }
 
   async collectionQuery(collection) {
-    const fullMovieList = await this.api.getCollection(collection);
+    const fullMovieList = await this.api.getCollection(collection)
 
     this.setState({
       fullMovieList,
       movies: fullMovieList,
       loaded: true,
-    });
-  }
-
-  async genreQuery(genreID) {
-    const moviesOfGenre = await this.api.getMoviesOfGenre(genreID);
-
-    this.setState({
-      fullMovieList: moviesOfGenre,
-      movies: moviesOfGenre,
-    });
-  }
-
-  componentDidMount() {
-    this.collectionQuery(this.state.collection);
-    this.fetchGenres();
-  }
-
-  filterMovies(filterText) {
-    const allMovies = this.state.fullMovieList;
-    const filteredMovies = allMovies.filter(
-      m => m.title.toLowerCase().indexOf(filterText.toLowerCase()) !== -1,
-    );
-    this.setState({
-      movies: filteredMovies,
-    });
-  }
-
-  refreshFilter() {
-    const allMovies = this.state.fullMovieList;
-    this.refs.searchBox.value = '';
-    this.setState({
-      movies: allMovies,
-      searchText: '',
-    });
+    })
   }
 
   toggleNowPlaying() {
-    const { collection } = this.state;
-    const newCollection = collection === NOW_PLAYING ? POPULAR : NOW_PLAYING;
-    this.collectionQuery(newCollection);
-    this.setState({ collection: newCollection });
+    const { collection } = this.state
+    const newCollection = collection === NOW_PLAYING ? POPULAR : NOW_PLAYING
+    this.collectionQuery(newCollection)
+    this.setState({ collection: newCollection })
   }
 
-  setGenre = event => {
-    const genreID = event.target.value;
-    this.genreQuery(genreID);
-  };
-
   toggleSortOrder() {
-    const newOrder = this.state.sortOrder === 'asc' ? 'desc' : 'asc';
-    this.setState({ sortOrder: newOrder });
+    const { sortOrder } = this.state
+    const newOrder = sortOrder === 'asc' ? 'desc' : 'asc'
+    this.setState({ sortOrder: newOrder })
   }
 
   render() {
-    const { searchText, collection, movies, loaded, genres } = this.state;
+    const { searchText, collection, movies, loaded, genres } = this.state
 
     return (
       <div style={styles.headerWrapper}>
@@ -191,8 +193,8 @@ class App extends Component {
           genres={genres}
         />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

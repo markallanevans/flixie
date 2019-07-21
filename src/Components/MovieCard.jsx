@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const styles = {
   cardStyle: {
@@ -9,14 +9,14 @@ const styles = {
     height: '100%',
     backgroundColor: 'rgba(49, 49, 66, 0.8)',
     color: '#eeeeee',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   captionStyle: {
     color: '#888899',
     height: '150px',
     padding: '10px',
     overflowY: 'scroll',
-    textAlign: 'justify'
+    textAlign: 'justify',
   },
   titleStyle: {
     display: 'inline-block',
@@ -32,33 +32,33 @@ const styles = {
     borderBottom: '1px solid #444455',
     backgroundColor: '#111133',
     opacity: '0.9',
-    boxShadow: '0px 4px 16px 0px #111133'
+    boxShadow: '0px 4px 16px 0px #111133',
   },
   posterStyle: {
     border: '1px solid #444455',
-    boxShadow: '0 0 25px 0 #333355'
+    boxShadow: '0 0 25px 0 #333355',
   },
   headerStyle: {
-    paddingLeft: '16px'
+    paddingLeft: '16px',
   },
   captionLeft: {
     marginBottom: '8px',
     padding: '8px',
     float: 'left',
-    backgroundColor: '#111133'
+    backgroundColor: '#111133',
   },
   captionRight: {
     marginBottom: '8px',
     padding: '8px',
     float: 'right',
-    backgroundColor: '#111133'
+    backgroundColor: '#111133',
   },
   overview: {
     marginBottom: '8px',
     padding: '8px',
-    clear: 'both'
-  }
-};
+    clear: 'both',
+  },
+}
 
 const MovieCard = ({
   id,
@@ -68,7 +68,7 @@ const MovieCard = ({
   score,
   posterPath,
   releaseDate,
-  overview
+  overview,
 }) => {
   return (
     <div style={styles.cardStyle} className="border-rounded">
@@ -104,8 +104,8 @@ const MovieCard = ({
         <div style={styles.overview}>{overview}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
@@ -115,7 +115,7 @@ MovieCard.propTypes = {
   score: PropTypes.number.isRequired,
   posterPath: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired
-};
+  overview: PropTypes.string.isRequired,
+}
 
-export default MovieCard;
+export default MovieCard

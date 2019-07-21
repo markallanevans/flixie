@@ -1,7 +1,7 @@
 export const COLLECTIONS = {
   NOW_PLAYING: 'now_playing',
   POPULAR: 'popular',
-};
+}
 
 /*
 {

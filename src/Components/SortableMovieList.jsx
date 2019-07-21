@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import MovieList from './MovieList';
-import GenreList from './GenreList';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import MovieList from './MovieList'
+import GenreList from './GenreList'
 
-const backGroundUrl = require('../images/fancy-pants.jpg');
-const upArrow = require('../images/upArrow.png');
-const downArrow = require('../images/downArrow.png');
+const backGroundUrl = require('../images/fancy-pants.jpg')
+const upArrow = require('../images/upArrow.png')
+const downArrow = require('../images/downArrow.png')
 
 const styles = {
   arrowImageStyle: {
@@ -41,53 +41,53 @@ const styles = {
     width: '100%',
     float: 'left',
   },
-};
+}
 
 class SortableMovieList extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.sortList = this.sortList.bind(this);
+    this.sortList = this.sortList.bind(this)
 
     this.state = {
       sortCriteria: 'title',
       sortOrder: 'asc',
-    };
+    }
   }
 
   toggleSortOrder = () => {
     this.setState(prevState => {
       return {
         sortOrder: prevState.sortOrder === 'asc' ? 'desc' : 'asc',
-      };
-    });
-  };
+      }
+    })
+  }
 
   sortList = (key, order) => {
     return function sort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-        return 0;
+        return 0
       }
 
-      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key]
+      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key]
 
-      let comparison = 0;
+      let comparison = 0
       if (varA > varB) {
-        comparison = 1;
+        comparison = 1
       } else if (varA < varB) {
-        comparison = -1;
+        comparison = -1
       }
-      return order === 'desc' ? comparison * -1 : comparison;
-    };
-  };
+      return order === 'desc' ? comparison * -1 : comparison
+    }
+  }
 
   render() {
-    const { sortCriteria, sortOrder } = this.state;
-    const { loaded, movies, genres, setGenre } = this.props;
-    if (!loaded) return <div className="loader" />;
+    const { sortCriteria, sortOrder } = this.state
+    const { loaded, movies, genres, setGenre } = this.props
+    if (!loaded) return <div className="loader" />
 
-    movies.sort(this.sortList(sortCriteria, sortOrder));
+    movies.sort(this.sortList(sortCriteria, sortOrder))
 
     return (
       <div>
@@ -146,7 +146,7 @@ class SortableMovieList extends Component {
           <MovieList movies={movies} />
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -155,6 +155,6 @@ SortableMovieList.propTypes = {
   loaded: PropTypes.bool.isRequired,
   setGenre: PropTypes.func.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+}
 
-export default SortableMovieList;
+export default SortableMovieList
