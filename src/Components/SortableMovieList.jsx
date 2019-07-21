@@ -48,6 +48,7 @@ class SortableMovieList extends Component {
     super(props)
 
     this.sortList = this.sortList.bind(this)
+    this.toggleSortOrder = this.toggleSortOrder.bind(this)
 
     this.state = {
       sortCriteria: 'title',
@@ -55,7 +56,7 @@ class SortableMovieList extends Component {
     }
   }
 
-  toggleSortOrder = () => {
+  toggleSortOrder() {
     this.setState(prevState => {
       return {
         sortOrder: prevState.sortOrder === 'asc' ? 'desc' : 'asc',
@@ -63,7 +64,8 @@ class SortableMovieList extends Component {
     })
   }
 
-  sortList = (key, order) => {
+  // TODO: complete logic for sorting genres
+  sortList(key, order) {
     return function sort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
         return 0
@@ -108,21 +110,21 @@ class SortableMovieList extends Component {
           <button
             style={styles.buttonStyle}
             type="button"
-            onClick={() => this.setState({ sortCriteria: 'vote_average' })}
+            onClick={() => this.setState({ sortCriteria: 'score' })}
           >
             Votes
           </button>
           <button
             style={styles.buttonStyle}
             type="button"
-            onClick={() => this.setState({ sortCriteria: 'genres_id[0]' })}
+            onClick={() => this.setState({ sortCriteria: 'genreIds' })}
           >
             Genre
           </button>
           <button
             style={styles.buttonStyle}
             type="button"
-            onClick={() => this.setState({ sortCriteria: 'release_date' })}
+            onClick={() => this.setState({ sortCriteria: 'releaseDate' })}
           >
             Date
           </button>

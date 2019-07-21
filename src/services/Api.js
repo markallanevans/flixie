@@ -62,6 +62,7 @@ class ApiProvider {
         voteCount: movie.vote_count,
         popularity: movie.popularity,
         score: movie.vote_average,
+        genreIds: movie.genre_ids,
         releaseDate: movie.release_date,
         overview: movie.overview,
         posterPath: API_URL_GET_POSTER + movie.poster_path,
